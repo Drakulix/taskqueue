@@ -373,7 +373,7 @@ impl<'queue, T: 'static> BoundSerialQueue<'queue, T>
     /// # use taskqueue::*;
     /// # let queue = SerialQueue::new();
     /// let bound = queue.with(|| 2);
-    /// let doubled: Vec<i32> = queue.foreach_with((0..20), |factor, x| x*factor).collect();
+    /// let doubled: Vec<i32> = bound.foreach_with((0..20), |factor, x| x*factor).collect();
     /// # assert_eq!((0..20).map(|x| x*2).collect::<Vec<i32>>(), doubled);
     /// ```
     pub fn foreach_with<B, R, I, F>(&'queue self, mut iter: I, operation: F) -> Group<R>
