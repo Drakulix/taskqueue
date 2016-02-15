@@ -1,5 +1,7 @@
 # TaskQueue [![Build Status](https://travis-ci.org/Drakulix/taskqueue.svg?branch=master)](https://travis-ci.org/Drakulix/taskqueue) [![Build status](https://ci.appveyor.com/api/projects/status/b77qdi7rbhraxdvm?svg=true)](https://ci.appveyor.com/project/Drakulix/taskqueue) [![Coverage Status](https://coveralls.io/repos/github/drakulix/taskqueue/badge.svg?branch=master)](https://coveralls.io/github/drakulix/taskqueue?branch=master) [![Crates.io](https://img.shields.io/crates/v/taskqueue.svg)](https://crates.io/crates/taskqueue) [![Crates.io](https://img.shields.io/crates/l/taskqueue.svg)](https://crates.io/crates/taskqueue) [![Join Chat](https://gitter.im/Drakulix/taskqueue?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
+[![Join the chat at https://gitter.im/Drakulix/taskqueue](https://badges.gitter.im/Drakulix/taskqueue.svg)](https://gitter.im/Drakulix/taskqueue?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 
 Multi-threading for Rust made easy based on [*mioco*](https://github.com/dpc/mioco)
