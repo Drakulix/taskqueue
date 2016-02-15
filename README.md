@@ -1,4 +1,4 @@
-# TaskQueue [![Build Status](https://travis-ci.org/Drakulix/taskqueue.svg?branch=master)](https://travis-ci.org/Drakulix/taskqueue) [![Build status](https://ci.appveyor.com/api/projects/status/b77qdi7rbhraxdvm?svg=true)](https://ci.appveyor.com/project/Drakulix/taskqueue) [![Coverage Status](https://coveralls.io/repos/github/drakulix/taskqueue/badge.svg?branch=master)](https://coveralls.io/github/drakulix/taskqueue?branch=master) [![Crates.io](https://img.shields.io/crates/v/taskqueue.svg)](https://crates.io/crates/taskqueue) [![Crates.io](https://img.shields.io/crates/l/taskqueue.svg)](https://crates.io/crates/taskqueue)
+# TaskQueue [![Build Status](https://travis-ci.org/Drakulix/taskqueue.svg?branch=master)](https://travis-ci.org/Drakulix/taskqueue) [![Build status](https://ci.appveyor.com/api/projects/status/b77qdi7rbhraxdvm?svg=true)](https://ci.appveyor.com/project/Drakulix/taskqueue) [![Coverage Status](https://coveralls.io/repos/github/drakulix/taskqueue/badge.svg?branch=master)](https://coveralls.io/github/drakulix/taskqueue?branch=master) [![Crates.io](https://img.shields.io/crates/v/taskqueue.svg)](https://crates.io/crates/taskqueue) [![Crates.io](https://img.shields.io/crates/l/taskqueue.svg)](https://crates.io/crates/taskqueue) [![Join Chat](https://gitter.im/Drakulix/taskqueue?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 
 
@@ -16,19 +16,22 @@ Multi-threading is difficult, but it does not need to be.
 
 What do you want from Thread?
 You want them to
-    -  utilize more cores (at best automatically)
-    -  execute certain operations.
+
+- utilize more cores (at best automatically)
+- execute certain operations.
 
 What you usually don't want to do, is
-    - managing their run loop
-    - worry about deadlocks
-    - worry about overlapping operations
+
+- managing their run loop
+- worry about deadlocks
+- worry about overlapping operations
 
 So what your thread-like object really should be is a queue
 for tasks with the following guarantees:
-    - only one task executes at a time
-    - all execute in queuing order
-    - a queue is bond to a specific underlying thread for safe interactions with not thread-safe types.
+
+- only one task executes at a time
+- all execute in queuing order
+- a queue is bond to a specific underlying thread for safe interactions with not thread-safe types.
 
 Sounds good to you?
 
@@ -83,10 +86,12 @@ to your `Cargo.toml`
 
 Contributions are highly welcome, but I suggest you contact me about larger changes you
 may want to implement at first so you don't waste your time. To do that you may either:
-    - fill an issue about the missing feature or bug you want to solve.
-    - contact me via Gitter
+
+- fill an issue about the missing feature or bug you want to solve.
+- contact me via Gitter
 
 Then just:
+
 1. Fork it!
 2. Create your feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
@@ -101,7 +106,7 @@ additional terms or conditions.
 
 Licensed under either of
 
- * Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
- * MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+* Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+* MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
 at your option.
