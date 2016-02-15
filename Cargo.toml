@@ -1,0 +1,18 @@
+[package]
+name = "taskqueue"
+version = "1.0.0"
+license = "MIT OR Apache-2.0"
+authors = ["Drakulix <taskqueue@drakulix.de>"]
+description = "lipdispatch inspired threading library"
+repository = "https://github.com/drakulix/taskqueue"
+documentation = "https://drakulix.github.io/taskqueue/taskqueue/index.html"
+readme = "README.md"
+keywords = ["task", "threading", "dispatch", "async", "mioco"]
+
+[dependencies]
+mioco = { git = "https://github.com/dpc/mioco.git" }
+lazy_static = "0.1"
+log = "0.3"
+
+[dev-dependencies]
+env_logger = "0.3"
