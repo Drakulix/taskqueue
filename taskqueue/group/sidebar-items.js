@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Group","Group provides a way to synchronize multiple TasksUsing Group you can block on multiple tasks at once or handle them in order across multiple queues."]]});

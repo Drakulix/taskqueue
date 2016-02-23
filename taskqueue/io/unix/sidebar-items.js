@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["pipe","Create a pair of unix pipe (reader and writer)"]],"struct":[["UnixListener","Unix listener"]],"type":[["PipeReader",""],["PipeWriter",""],["UnixSocket",""],["UnixStream",""]]});

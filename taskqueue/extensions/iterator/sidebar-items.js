@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["ConcurrentMap","The ConcurrentMap Trait adds a `map` like function to iterators that utilizes TaskQueue to execute it in parallel."]]});

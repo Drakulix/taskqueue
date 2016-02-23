@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["mail","Mailboxes"],["sync","Useful synchronization primitives"],["tcp","TCP IO"],["timer","Timers"],["udp","UDP IO"],["unix","Unix sockets IO"]],"struct":[["MioAdapter","Adapt raw `mio` type to mioco `Evented` requirements.See source of `src/tcp.rs` for example of usage."]]});

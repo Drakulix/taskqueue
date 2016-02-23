@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ConcurrentQueue` struct in crate `taskqueue`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ConcurrentQueue">
+
+    <title>taskqueue::ConcurrentQueue - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>taskqueue</a></p><script>window.sidebarCurrent = {name: 'ConcurrentQueue', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>taskqueue</a>::<wbr><a class='struct' href=''>ConcurrentQueue</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-361' class='srclink' href='../src/taskqueue/queue/concurrent.rs.html#49-52' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct ConcurrentQueue {
+    // some fields omitted
+}</pre><div class='docblock'><p>Queue executing tasks in parallel</p>
+
+<h2 id='properties' class='section-header'><a href='#properties'>Properties</a></h2>
+<ul>
+<li>executes a new task as soon as possible on the next thread</li>
+<li>tasks may overlap</li>
+<li>tasks may execute on totally different threads</li>
+<li>safety against deadlocks from recursive queueing (see SerialQueue example)</li>
+</ul>
+
+<p>This disallows type binding but enables very easy parallization where appropriate.</p>
+
+<h2 id='example' class='section-header'><a href='#example'>Example</a></h2><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='ident'>queue</span> <span class='op'>=</span> <span class='ident'>ConcurrentQueue</span>::<span class='ident'>new</span>();
+
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>Vec</span>::<span class='ident'>with_capacity</span>(<span class='number'>4096</span>);
+<span class='kw'>for</span> <span class='ident'>x</span> <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>4096</span> {
+    <span class='ident'>result</span>.<span class='ident'>push</span>(<span class='ident'>queue</span>.<span class='ident'>async</span>(<span class='kw'>move</span> <span class='op'>||</span> <span class='ident'>x</span><span class='op'>*</span><span class='ident'>x</span>));
+}
+<span class='kw'>let</span> <span class='ident'>result</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>result</span>.<span class='ident'>into_iter</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span>.<span class='ident'>get</span>()).<span class='ident'>collect</span>();</pre>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../taskqueue/struct.ConcurrentQueue.html' title='taskqueue::ConcurrentQueue'>ConcurrentQueue</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../taskqueue/struct.ConcurrentQueue.html' title='taskqueue::ConcurrentQueue'>ConcurrentQueue</a></code></h4>
+<div class='docblock'><p>Create a new ConcurrentQueue and executing tasks on the global thread pool</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../taskqueue/struct.ConcurrentQueue.html' title='taskqueue::ConcurrentQueue'>ConcurrentQueue</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../taskqueue/struct.ConcurrentQueue.html' title='taskqueue::ConcurrentQueue'>ConcurrentQueue</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> for <a class='struct' href='../taskqueue/struct.ConcurrentQueue.html' title='taskqueue::ConcurrentQueue'>ConcurrentQueue</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='../taskqueue/trait.Queue.html' title='taskqueue::Queue'>Queue</a> for <a class='struct' href='../taskqueue/struct.ConcurrentQueue.html' title='taskqueue::ConcurrentQueue'>ConcurrentQueue</a></code></h3><div class='impl-items'><h4 id='method.async' class='method'><code>fn <a href='../taskqueue/trait.Queue.html#method.async' class='fnname'>async</a>&lt;R, F&gt;(&amp;self, operation: F) -&gt; <a class='struct' href='../taskqueue/struct.Future.html' title='taskqueue::Future'>Future</a>&lt;R&gt; <span class='where'>where R: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>() -&gt; R + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static</span></code></h4>
+<h4 id='method.scoped' class='method'><code>fn <a href='../taskqueue/trait.Queue.html#method.scoped' class='fnname'>scoped</a>&lt;'queue, R, F&gt;(&amp;'queue self, task: F) -&gt; <a class='struct' href='../taskqueue/struct.FutureGuard.html' title='taskqueue::FutureGuard'>FutureGuard</a>&lt;R&gt; <span class='where'>where R: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>() -&gt; R + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'queue</span></code></h4>
+<h4 id='method.sync' class='method'><code>fn <a href='../taskqueue/trait.Queue.html#method.sync' class='fnname'>sync</a>&lt;'queue, R, F&gt;(&amp;'queue self, task: F) -&gt; R <span class='where'>where R: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>() -&gt; R + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'queue</span></code></h4>
+<h4 id='method.foreach' class='method'><code>fn <a href='../taskqueue/trait.Queue.html#method.foreach' class='fnname'>foreach</a>&lt;'queue, B, R, I, F&gt;(&amp;'queue self, iter: I, task: F) -&gt; <a class='struct' href='../taskqueue/struct.Group.html' title='taskqueue::Group'>Group</a>&lt;R&gt; <span class='where'>where B: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a>, R: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'queue, I: <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Iterator</a>&lt;Item=B&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a>, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(B) -&gt; R + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> + 'queue</span></code></h4>
+<h4 id='method.loop_while' class='method'><code>fn <a href='../taskqueue/trait.Queue.html#method.loop_while' class='fnname'>loop_while</a>&lt;'queue, R, F&gt;(&amp;'queue self, task: F) -&gt; <a class='struct' href='../taskqueue/struct.FutureGuard.html' title='taskqueue::FutureGuard'>FutureGuard</a>&lt;R&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>() -&gt; <a class='enum' href='../taskqueue/enum.LoopResult.html' title='taskqueue::LoopResult'>LoopResult</a>&lt;R&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> + 'queue, R: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static</span></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../taskqueue/struct.ConcurrentQueue.html' title='taskqueue::ConcurrentQueue'>ConcurrentQueue</a></code></h3><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "taskqueue";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
